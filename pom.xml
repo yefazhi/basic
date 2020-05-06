@@ -27,19 +27,19 @@
 		<guava-version>20.0</guava-version>
 		<httpcomponents-version>4.5.6</httpcomponents-version>
 		<commons-collections4-version>4.1</commons-collections4-version>
-		<mapper.version>4.0.0</mapper.version>
-		<mysql-version>5.1.38</mysql-version>
+		<mysql-version>5.1.36</mysql-version>
+		<mapper-version>4.0.0</mapper-version>
 		<lombok.version>1.18.10</lombok.version>
 		<druid.version>1.1.6</druid.version>
 		<mybatis-spring-boot-starter-version>1.3.2</mybatis-spring-boot-starter-version>
 		<!--  MyBatis Generator  -->
 		<!--  Java接口和实体类  -->
-		<!--		<targetJavaProject>**/src/main/java</targetJavaProject>-->
-		<!--		<targetMapperPackage>com.qianlicode.basic.dal.mysql.mapper</targetMapperPackage>-->
-		<!--		<targetModelPackage>cn.qianlicode.template.dal.mysql.dataobject</targetModelPackage>-->
+		<targetJavaProject>${basedir}/src/main/java</targetJavaProject>
+		<targetMapperPackage>com.qianlicode.basic.dal.mapper</targetMapperPackage>
+		<targetModelPackage>com.qianlicode.basic.dal.entry</targetModelPackage>
 		<!--  XML生成路径  -->
-		<!--				<targetResourcesProject>**/src/main/resources</targetResourcesProject>-->
-		<!--				<targetXMLPackage>mybatis/mapper</targetXMLPackage>-->
+		<targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
+		<targetXMLPackage>mapper/auto</targetXMLPackage>
 
 	</properties>
 
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>tk.mybatis</groupId>
 			<artifactId>mapper</artifactId>
-			<version>${mapper.version}</version>
+			<version>${mapper-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -164,6 +164,30 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!--mybatis插件-->
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.6</version>
+				<configuration>
+					<configurationFile>${basedir}/src/test/resources/mapper/generator/generatorConfig.xml</configurationFile>
+					<overwrite>true</overwrite>
+					<verbose>true</verbose>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>${mysql-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>tk.mybatis</groupId>
+						<artifactId>mapper</artifactId>
+						<version>${mapper-version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
