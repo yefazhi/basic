@@ -27,7 +27,7 @@
 		<guava-version>20.0</guava-version>
 		<httpcomponents-version>4.5.6</httpcomponents-version>
 		<commons-collections4-version>4.1</commons-collections4-version>
-		<mysql-version>5.1.36</mysql-version>
+		<mysql-version>8.0.28</mysql-version>
 		<mapper-version>4.0.0</mapper-version>
 		<lombok.version>1.18.10</lombok.version>
 		<druid.version>1.1.6</druid.version>
